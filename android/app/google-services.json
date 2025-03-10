@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "3454180745",
+    "project_id": "eduattend-c3e03",
+    "storage_bucket": "eduattend-c3e03.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:3454180745:android:6a1a7315cbf793830a5558",
+        "android_client_info": {
+          "package_name": "com.team9.eduattend.mobile_app_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnc4INgsxIDBitiwSmkNvhFkXw9ZOrCoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

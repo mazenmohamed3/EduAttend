@@ -1,0 +1,12 @@
+{
+  "loginSubtitle": "Student & Instructor Portal",
+  "email": "Email",
+  "emailHintText": "Enter your Email",
+  "password": "Password",
+  "passwordHintText": "Enter your Password",
+  "student": "Student",
+  "instructor": "Instructor",
+  "signIn": "Sign In",
+  "forgotPassword": "Forgot your password? ",
+  "resetPassword": "Reset it here"
+}

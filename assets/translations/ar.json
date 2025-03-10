@@ -1,0 +1,12 @@
+{
+  "loginSubtitle": "بوابة الطالب والدكتور",
+  "email": "البريد الالكتروني",
+  "emailHintText": "أدخل بريدك الإلكتروني",
+  "password": "كلمة المرور",
+  "passwordHintText": "أدخل كلمة المرور الخاصة بك",
+  "student": "طالب",
+  "instructor": "دكتور",
+  "signIn": "تسجيل الدخول",
+  "forgotPassword": "نسيت كلمة السر؟ ",
+  "resetPassword": "أعد ضبطه هنا"
+}
