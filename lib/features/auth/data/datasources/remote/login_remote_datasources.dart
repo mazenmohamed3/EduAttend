@@ -1,4 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_data_connect/firebase_data_connect.dart';
+import 'package:mobile_app_project/core/generated/dataconnect/connector/db.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../domain/model/login_models/login_model.dart';
 import '../../services/login_service.dart';
@@ -30,6 +32,9 @@ class LoginDataSourceImpl implements LoginDatasource {
   }) async {
     try {
       UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
+      print(userCredential);
+      OperationResult<UpsertStudentData, UpsertStudentVariables> result = await DbConnector.instance.upsertStudent(email: email, name: "name").execute();
+      print("============================> ${result.data.student_upsert.id}");
       print(userCredential.toString());
       return _loginService.userToLoginModel(userCredential.user);
     } on FirebaseAuthException catch (e) {

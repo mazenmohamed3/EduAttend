@@ -1,33 +1,81 @@
-# # Example mutations for a simple movie app
+# Upsert a student (used for logged-in users)
+mutation UpsertStudent($email: String!, $name: String!) @auth(level: USER) {
+  student_upsert(
+    data: {
+      id_expr: "auth.uid"
+      email: $email
+      name: $name
+    }
+  )
+}
 
-# # Create a movie based on user input
-# mutation CreateMovie($title: String!, $genre: String!, $imageUrl: String!)
-# @auth(level: USER_EMAIL_VERIFIED) {
-#   movie_insert(data: { title: $title, genre: $genre, imageUrl: $imageUrl })
-# }
+# Upsert an instructor (used for logged-in users)
+mutation UpsertInstructor($email: String!, $name: String!) @auth(level: USER) {
+  instructor_upsert(
+    data: {
+      id_expr: "auth.uid"
+      email: $email
+      name: $name
+    }
+  )
+}
 
-# # Upsert (update or insert) a user's username based on their auth.uid
-# mutation UpsertUser($username: String!) @auth(level: USER) {
-#   # The "auth.uid" server value ensures that users can only register their own user.
-#   user_upsert(data: { id_expr: "auth.uid", username: $username })
-# }
+mutation UpsertSubject( $name: String!, $code: String!) @auth(level: USER) {
+  subject_upsert(
+    data: {
+      id_expr: "uuidV4()"
+      name: $name
+      subjectCode: $code
+    }
+  )
+}
 
-# # Add a review for a movie
-# mutation AddReview($movieId: UUID!, $rating: Int!, $reviewText: String!)
-# @auth(level: USER) {
-#   review_upsert(
-#     data: {
-#       userId_expr: "auth.uid"
-#       movieId: $movieId
-#       rating: $rating
-#       reviewText: $reviewText
-#       # reviewDate defaults to today in the schema. No need to set it manually.
-#     }
-#   )
-# }
+mutation UpsertGroup($subjectId: UUID!, $studentId: String, $day: String!, $startTime: String!, $endTime: String!) @auth(level: USER) {
+  group_upsert(
+    data: {
+      id_expr: "uuidV4()"
+      subject: { id: $subjectId }
+      day: $day
+      startTime: $startTime
+      endTime: $endTime
+      students: { id: $studentId }
+    }
+  )
+}
 
-# # Logged in user can delete their review for a movie
-# mutation DeleteReview($movieId: UUID!) @auth(level: USER) {
-#   # The "auth.uid" server value ensures that users can only delete their own reviews.
-#   review_delete(key: { userId_expr: "auth.uid", movieId: $movieId })
-# }
+mutation UpsertAttendance( $student: Student_Key!,$group: Group_Key!,$status: String!) @auth(level: USER) {
+  attendance_upsert(
+    data: {
+      id_expr: "uuidV4()"
+      student: $student
+      group: $group
+      status: $status
+    }
+  )
+}
+
+# Delete a student
+mutation DeleteStudent($id: String!) @auth(level: USER) {
+  student_delete(
+      id: $id,
+  )
+}
+
+# Delete an instructor
+mutation DeleteInstructor($id: String!) @auth(level: USER) {
+  instructor_delete(
+      id: $id,
+  )
+}
+
+mutation DeleteSubject($id: UUID!) @auth(level: USER) {
+  subject_delete(id: $id)
+}
+
+mutation DeleteGroup($id: UUID!) @auth(level: USER) {
+  group_delete(id: $id)
+}
+
+mutation DeleteAttendance($id: UUID!) @auth(level: USER) {
+  attendance_delete(id: $id)
+}

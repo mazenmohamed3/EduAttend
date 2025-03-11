@@ -1,52 +1,34 @@
-# # Example schema for simple movie review app
+# Student table is keyed by Firebase Auth UID.
+type Student @table{
+  id: String! @default(expr: "auth.uid")
+  email: String! @col(name: "email", dataType: "varchar(50)")
+  name: String! @col(name: "name", dataType: "varchar(50)")
+}
 
-# # User table is keyed by Firebase Auth UID.
-# type User @table {
-#   # `@default(expr: "auth.uid")` sets it to Firebase Auth UID during insert and upsert.
-#   id: String! @default(expr: "auth.uid")
-#   username: String! @col(dataType: "varchar(50)")
-#   # The `user: User!` field in the Review table generates the following one-to-many query field.
-#   #  reviews_on_user: [Review!]!
-#   # The `Review` join table the following many-to-many query field.
-#   #  movies_via_Review: [Movie!]!
-# }
+type Instructor @table {
+  id: String! @default(expr: "auth.uid")
+  email: String! @col(name: "email", dataType: "varchar(50)")
+  name: String! @col(name: "name", dataType: "varchar(50)")
+}
 
-# # Movie is keyed by a randomly generated UUID.
-# type Movie @table {
-#   # If you do not pass a 'key' to `@table`, Data Connect automatically adds the following 'id' column.
-#   # Feel free to uncomment and customize it.
-#   #  id: UUID! @default(expr: "uuidV4()")
-#   title: String!
-#   imageUrl: String!
-#   genre: String
-# }
+type Group @table {
+  subject: Subject! 
+  day: String! @col(name: "day",)
+  startTime: String! @col(name: "starts_at",)
+  endTime: String! @col(name: "ends_at",)
+  students: Student! @unique
+}
 
-# # MovieMetadata is a metadata attached to a Movie.
-# # Movie <-> MovieMetadata is a one-to-one relationship
-# type MovieMetadata @table {
-#   # @unique ensures each Movie can only one MovieMetadata.
-#   movie: Movie! @unique
-#   # The movie field adds the following foreign key field. Feel free to uncomment and customize it.
-#   #  movieId: UUID!
-#   rating: Float
-#   releaseYear: Int
-#   description: String
-# }
+type Subject @table {
+  teachedBy: Instructor! 
+  subjectCode: String! @col(name: "code", dataType: "varchar(6)") @unique
+  name: String! @col(name: "subject", dataType: "varchar(50)")
+  student: Student!
+}
 
-# # Reviews is a join table between User and Movie.
-# # It has a composite primary keys `userUid` and `movieId`.
-# # A user can leave reviews for many movies. A movie can have reviews from many users.
-# # User  <-> Review is a one-to-many relationship
-# # Movie <-> Review is a one-to-many relationship
-# # Movie <-> User is a many-to-many relationship
-# type Review @table(name: "Reviews", key: ["movie", "user"]) {
-#   user: User!
-#   # The user field adds the following foreign key field. Feel free to uncomment and customize it.
-#   #  userUid: String!
-#   movie: Movie!
-#   # The movie field adds the following foreign key field. Feel free to uncomment and customize it.
-#   #  movieId: UUID!
-#   rating: Int
-#   reviewText: String
-#   reviewDate: Date! @default(expr: "request.time")
-# }
+type Attendance @table {
+  group: Group!  
+  student: Student!  
+  status: String! @col(name: "status")
+  attendanceDate: Timestamp @col(name: "Ddte") @default(expr: "request.time")
+}   

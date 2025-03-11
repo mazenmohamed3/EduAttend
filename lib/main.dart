@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_app_project/core/database/Secure%20Storage/secure_storage_helper.dart';
+import 'package:mobile_app_project/core/generated/dataconnect/connector/db.dart';
 import 'core/cubits/bool_cubit/bool_cubit.dart';
 import 'core/injection/service_locator.dart';
 import 'core/theme/theme.dart';
@@ -16,6 +17,8 @@ void main() async {
   await ServiceLocator.init();
   SecureStorageHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //TODO: make sure to change ip when presenting to the Prof.
+  DbConnector.instance.dataConnect.useDataConnectEmulator("192.168.1.110", 9399);
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableLevels = [];
 
