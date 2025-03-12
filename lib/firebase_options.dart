@@ -6,14 +6,6 @@ import 'package:flutter/foundation.dart'
 
 /// Default [FirebaseOptions] for use with your Firebase apps.
 ///
-/// Example:
-/// ```dart
-/// import 'firebase_options.dart';
-/// // ...
-/// await Firebase.initializeApp(
-///   options: DefaultFirebaseOptions.currentPlatform,
-/// );
-/// ```
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
@@ -40,49 +32,59 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDlOW_XuwdBtmJsuXq3YKTP-9RAPxposBY',
-    appId: '1:3454180745:web:0c62d82b6aaeb9d20a5558',
-    messagingSenderId: '3454180745',
-    projectId: 'eduattend-c3e03',
-    authDomain: 'eduattend-c3e03.firebaseapp.com',
-    storageBucket: 'eduattend-c3e03.firebasestorage.app',
-    measurementId: 'G-13NGQT3JH9',
-  );
+  static FirebaseOptions get web {
+    return FirebaseOptions(
+      apiKey: String.fromEnvironment('WEB_API_KEY'),
+      appId: String.fromEnvironment('WEB_APP_ID'),
+      messagingSenderId: String.fromEnvironment('WEB_MESSAGING_SENDER_ID'),
+      projectId: String.fromEnvironment('PROJECT_ID'),
+      authDomain: String.fromEnvironment('WEB_AUTH_DOMAIN'),
+      storageBucket: String.fromEnvironment('WEB_STORAGE_BUCKET'),
+      measurementId: String.fromEnvironment('WEB_MEASUREMENT_ID'),
+    );
+  }
 
-  static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAnc4INgsxIDBitiwSmkNvhFkXw9ZOrCoY',
-    appId: '1:3454180745:android:6a1a7315cbf793830a5558',
-    messagingSenderId: '3454180745',
-    projectId: 'eduattend-c3e03',
-    storageBucket: 'eduattend-c3e03.firebasestorage.app',
-  );
+  static FirebaseOptions get android {
+    return FirebaseOptions(
+      apiKey: String.fromEnvironment('ANDROID_API_KEY'),
+      appId: String.fromEnvironment('ANDROID_APP_ID'),
+      messagingSenderId: String.fromEnvironment('ANDROID_MESSAGING_SENDER_ID'),
+      projectId: String.fromEnvironment('PROJECT_ID'),
+      storageBucket: String.fromEnvironment('ANDROID_STORAGE_BUCKET'),
+    );
+  }
 
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDPZ8qrDy6mE8srgdGSvaLOK4c-KgGAyUU',
-    appId: '1:3454180745:ios:1c71c7428280bfb90a5558',
-    messagingSenderId: '3454180745',
-    projectId: 'eduattend-c3e03',
-    storageBucket: 'eduattend-c3e03.firebasestorage.app',
-    iosBundleId: 'com.team9.eduattend.mobileAppProject',
-  );
+  static FirebaseOptions get ios {
+    return FirebaseOptions(
+      apiKey: String.fromEnvironment('IOS_API_KEY'),
+      appId: String.fromEnvironment('IOS_APP_ID'),
+      messagingSenderId: String.fromEnvironment('IOS_MESSAGING_SENDER_ID'),
+      projectId: String.fromEnvironment('PROJECT_ID'),
+      storageBucket: String.fromEnvironment('IOS_STORAGE_BUCKET'),
+      iosBundleId: String.fromEnvironment('IOS_BUNDLE_ID'),
+    );
+  }
 
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDPZ8qrDy6mE8srgdGSvaLOK4c-KgGAyUU',
-    appId: '1:3454180745:ios:1c71c7428280bfb90a5558',
-    messagingSenderId: '3454180745',
-    projectId: 'eduattend-c3e03',
-    storageBucket: 'eduattend-c3e03.firebasestorage.app',
-    iosBundleId: 'com.team9.eduattend.mobileAppProject',
-  );
+  static FirebaseOptions get macos {
+    return FirebaseOptions(
+      apiKey: String.fromEnvironment('IOS_API_KEY'),
+      appId: String.fromEnvironment('IOS_APP_ID'),
+      messagingSenderId: String.fromEnvironment('IOS_MESSAGING_SENDER_ID'),
+      projectId: String.fromEnvironment('PROJECT_ID'),
+      storageBucket: String.fromEnvironment('IOS_STORAGE_BUCKET'),
+      iosBundleId: String.fromEnvironment('IOS_BUNDLE_ID'),
+    );
+  }
 
-  static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDlOW_XuwdBtmJsuXq3YKTP-9RAPxposBY',
-    appId: '1:3454180745:web:50229b2cb0d017780a5558',
-    messagingSenderId: '3454180745',
-    projectId: 'eduattend-c3e03',
-    authDomain: 'eduattend-c3e03.firebaseapp.com',
-    storageBucket: 'eduattend-c3e03.firebasestorage.app',
-    measurementId: 'G-1ML8XHP5XK',
-  );
+  static FirebaseOptions get windows {
+    return FirebaseOptions(
+      apiKey: String.fromEnvironment('WEB_API_KEY'),
+      appId: String.fromEnvironment('WEB_APP_ID'),
+      messagingSenderId: String.fromEnvironment('WEB_MESSAGING_SENDER_ID'),
+      projectId: String.fromEnvironment('PROJECT_ID'),
+      authDomain: String.fromEnvironment('WEB_AUTH_DOMAIN'),
+      storageBucket: String.fromEnvironment('WEB_STORAGE_BUCKET'),
+      measurementId: String.fromEnvironment('WEB_MEASUREMENT_ID'),
+    );
+  }
 }
