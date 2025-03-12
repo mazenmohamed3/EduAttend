@@ -23,7 +23,7 @@ type Subject @table {
   teachedBy: Instructor! 
   subjectCode: String! @col(name: "code", dataType: "varchar(6)") @unique
   name: String! @col(name: "subject", dataType: "varchar(50)")
-  student: Student!
+  students: Student!
 }
 
 type Attendance @table {
@@ -31,4 +31,4 @@ type Attendance @table {
   student: Student!  
   status: String! @col(name: "status")
   attendanceDate: Timestamp @col(name: "Ddte") @default(expr: "request.time")
-}   
+}

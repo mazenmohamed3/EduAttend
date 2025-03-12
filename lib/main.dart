@@ -18,9 +18,10 @@ void main() async {
   SecureStorageHelper.init();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   //TODO: make sure to change ip when presenting to the Prof.
-  DbConnector.instance.dataConnect.useDataConnectEmulator("192.168.1.110", 9399);
+  DbConnector.instance.dataConnect.useDataConnectEmulator("7.tcp.eu.ngrok.io", 12306);
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableLevels = [];
+
 
   runApp(
     EasyLocalization(
