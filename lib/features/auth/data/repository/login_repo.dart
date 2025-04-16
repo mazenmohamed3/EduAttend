@@ -1,8 +1,8 @@
 import 'package:mobile_app_project/features/auth/data/services/login_service.dart';
 import '../../../../core/enums/login_user_type.dart';
 import '../../domain/model/login_models/login_model.dart';
-import '../datasources/remote/login_remote_datasources.dart';
 import '../../domain/repository/login_repo.dart';
+import '../sources/remote/login_remote_datasources.dart';
 
 class LoginRepositoryImpl implements LoginRepository {
   final LoginDatasource datasource;
