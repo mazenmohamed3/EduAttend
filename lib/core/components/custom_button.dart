@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:mobile_app_project/core/theme/theme.dart';
 import 'custom_text.dart';
 
 class CustomButton extends StatelessWidget {

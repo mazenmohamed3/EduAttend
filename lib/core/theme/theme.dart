@@ -14,6 +14,7 @@ class AppTheme {
   static final ColorScheme darkColorScheme = ColorScheme.fromSeed(
     seedColor: Colors.blue,
     brightness: Brightness.dark,
+    primary: Colors.blue,
   );
 
   static final ThemeData lightTheme = ThemeData(
@@ -53,7 +54,27 @@ class AppTheme {
         backgroundColor: WidgetStateProperty.all(lightColorScheme.primary),
       ),
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      elevation: 1, // or 1–4 to match NavBar subtle shadow
+      backgroundColor: lightColorScheme.surface,
+      surfaceTintColor: Colors.transparent, // disables M3 tint
+      shadowColor: Colors.grey[100],
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const TextStyle(color: Colors.blue);
+        }
+        return const TextStyle(color: Colors.grey);
+      }),
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const IconThemeData(color: Colors.blue);
+        }
+        return const IconThemeData(color: Colors.grey);
+      }),
+    ),
+
   );
+
 
   static final ThemeData darkTheme = ThemeData(
     colorScheme: darkColorScheme,
@@ -92,6 +113,25 @@ class AppTheme {
         backgroundColor: WidgetStateProperty.all(darkColorScheme.inversePrimary),
       ),
     ),
+    navigationBarTheme: NavigationBarThemeData(
+      elevation: 0.5, // or 1–4 to match NavBar subtle shadow
+      backgroundColor: darkColorScheme.surface,
+      surfaceTintColor: Colors.transparent, // disables M3 tint
+      shadowColor: Colors.grey[100],
+      labelTextStyle: WidgetStateProperty.resolveWith<TextStyle>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const TextStyle(color: Colors.blue);
+        }
+        return TextStyle(color: Colors.grey.shade400);
+      }),
+      iconTheme: WidgetStateProperty.resolveWith<IconThemeData>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const IconThemeData(color: Colors.blue);
+        }
+        return IconThemeData(color: Colors.grey.shade400);
+      }),
+    ),
+
     // No appBarTheme override here → inherits system/default
   );
 }
