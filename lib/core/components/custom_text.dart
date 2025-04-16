@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../theme/theme.dart';
+
 class CustomText extends StatelessWidget {
   final String text;
   final Color? color; // Make this nullable
@@ -33,7 +35,7 @@ class CustomText extends StatelessWidget {
     final lang = context.locale.languageCode;
     final argsToPass = args ?? [];
 
-    final defaultColor = Theme.of(context).textTheme.bodyLarge?.color;
+    final defaultColor = AppTheme.defaultTextColor(context);
 
     return Text(
       text.tr(args: argsToPass),

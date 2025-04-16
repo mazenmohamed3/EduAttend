@@ -10,6 +10,7 @@ import '../../../../core/components/custom_text.dart';
 import '../../../../core/cubits/bool_cubit/bool_cubit.dart';
 import '../../../../core/enums/login_user_type.dart';
 import '../../../../core/injection/service_locator.dart';
+import '../../../../core/theme/theme.dart';
 import '../cubits/login_cubit/login_cubit.dart';
 import '../widgets/custom_radio_tile.dart';
 
@@ -261,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: GoogleFonts.figtree(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                      color: AppTheme.defaultTextColor(context),
                     ),
                     children: [
                       TextSpan(

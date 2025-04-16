@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class AppTheme {
+  static Color defaultTextColor(BuildContext context) {
+    return Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black;
+  }
+
   static final ColorScheme lightColorScheme = ColorScheme.fromSeed(
     seedColor: Colors.blue,
     brightness: Brightness.light,

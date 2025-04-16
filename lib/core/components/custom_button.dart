@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mobile_app_project/core/theme/theme.dart';
 import 'custom_text.dart';
 
 class CustomButton extends StatelessWidget {
@@ -46,14 +47,14 @@ class CustomButton extends StatelessWidget {
         child: isLoading
             ? Transform.scale(
           scale: 0.8,
-          child: const CircularProgressIndicator(
-            color: Colors.black,
+          child: CircularProgressIndicator(
+            color: Theme.of(context).primaryColor,
           ),
         )
             : CustomText(
           text: title ?? 'Continue'.tr(),
           fontSize: 16.sp,
-          color: noAction ? Colors.white : Colors.black,
+          color: noAction ? Theme.of(context).colorScheme.onSurface : Theme.of(context).colorScheme.surface,
           fontWeight: FontWeight.w700,
         ),
       ),
