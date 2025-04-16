@@ -1,13 +1,13 @@
 part of 'db.dart';
 
 class ListStudentsVariablesBuilder {
-  Optional<String> _id = Optional.optional(nativeFromJson, nativeToJson);
+  Optional<String> _email = Optional.optional(nativeFromJson, nativeToJson);
   Optional<int> _offset = Optional.optional(nativeFromJson, nativeToJson);
   Optional<int> _limit = Optional.optional(nativeFromJson, nativeToJson);
 
   final FirebaseDataConnect _dataConnect;
-  ListStudentsVariablesBuilder id(String? t) {
-   _id.value = t;
+  ListStudentsVariablesBuilder email(String? t) {
+   _email.value = t;
    return this;
   }
   ListStudentsVariablesBuilder offset(int? t) {
@@ -27,7 +27,7 @@ class ListStudentsVariablesBuilder {
   }
 
   QueryRef<ListStudentsData, ListStudentsVariables> ref() {
-    ListStudentsVariables vars= ListStudentsVariables(id: _id,offset: _offset,limit: _limit,);
+    ListStudentsVariables vars= ListStudentsVariables(email: _email,offset: _offset,limit: _limit,);
     return _dataConnect.query("ListStudents", dataDeserializer, varsSerializer, vars);
   }
 }
@@ -73,14 +73,14 @@ class ListStudentsData {
 }
 
 class ListStudentsVariables {
-  late Optional<String>id;
+  late Optional<String>email;
   late Optional<int>offset;
   late Optional<int>limit;
   @Deprecated('fromJson is deprecated for Variable classes as they are no longer required for deserialization.')
   ListStudentsVariables.fromJson(Map<String, dynamic> json) {
   
-    id = Optional.optional(nativeFromJson, nativeToJson);
-    id.value = json['id'] == null ? null : nativeFromJson<String>(json['id']);
+    email = Optional.optional(nativeFromJson, nativeToJson);
+    email.value = json['email'] == null ? null : nativeFromJson<String>(json['email']);
   
     offset = Optional.optional(nativeFromJson, nativeToJson);
     offset.value = json['offset'] == null ? null : nativeFromJson<int>(json['offset']);
@@ -92,8 +92,8 @@ class ListStudentsVariables {
 
   Map<String, dynamic> toJson() {
     Map<String, dynamic> json = {};
-    if(id.state == OptionalState.set) {
-      json['id'] = id.toJson();
+    if(email.state == OptionalState.set) {
+      json['email'] = email.toJson();
     }
     if(offset.state == OptionalState.set) {
       json['offset'] = offset.toJson();
@@ -105,7 +105,7 @@ class ListStudentsVariables {
   }
 
   ListStudentsVariables({
-    required this.id,
+    required this.email,
     required this.offset,
     required this.limit,
   });

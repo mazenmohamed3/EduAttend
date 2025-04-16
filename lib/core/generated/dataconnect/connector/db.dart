@@ -2,26 +2,6 @@ library default_connector;
 import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'dart:convert';
 
-part 'get_student_data.dart';
-
-part 'list_students.dart';
-
-part 'get_instructor.dart';
-
-part 'list_instructors.dart';
-
-part 'get_group.dart';
-
-part 'list_groups.dart';
-
-part 'get_attendance.dart';
-
-part 'list_attendances.dart';
-
-part 'get_subject.dart';
-
-part 'list_subjects.dart';
-
 part 'upsert_student.dart';
 
 part 'upsert_instructor.dart';
@@ -42,6 +22,26 @@ part 'delete_group.dart';
 
 part 'delete_attendance.dart';
 
+part 'get_student_data.dart';
+
+part 'list_students.dart';
+
+part 'get_instructor.dart';
+
+part 'list_instructors.dart';
+
+part 'get_group.dart';
+
+part 'list_groups.dart';
+
+part 'get_attendance.dart';
+
+part 'list_attendances.dart';
+
+part 'get_subject.dart';
+
+part 'list_subjects.dart';
+
 
 
 
@@ -49,56 +49,6 @@ part 'delete_attendance.dart';
 
 
 class DbConnector {
-  
-  
-  GetStudentDataVariablesBuilder getStudentData () {
-    return GetStudentDataVariablesBuilder(dataConnect, );
-  }
-  
-  
-  ListStudentsVariablesBuilder listStudents () {
-    return ListStudentsVariablesBuilder(dataConnect, );
-  }
-  
-  
-  GetInstructorVariablesBuilder getInstructor () {
-    return GetInstructorVariablesBuilder(dataConnect, );
-  }
-  
-  
-  ListInstructorsVariablesBuilder listInstructors () {
-    return ListInstructorsVariablesBuilder(dataConnect, );
-  }
-  
-  
-  GetGroupVariablesBuilder getGroup () {
-    return GetGroupVariablesBuilder(dataConnect, );
-  }
-  
-  
-  ListGroupsVariablesBuilder listGroups () {
-    return ListGroupsVariablesBuilder(dataConnect, );
-  }
-  
-  
-  GetAttendanceVariablesBuilder getAttendance () {
-    return GetAttendanceVariablesBuilder(dataConnect, );
-  }
-  
-  
-  ListAttendancesVariablesBuilder listAttendances () {
-    return ListAttendancesVariablesBuilder(dataConnect, );
-  }
-  
-  
-  GetSubjectVariablesBuilder getSubject () {
-    return GetSubjectVariablesBuilder(dataConnect, );
-  }
-  
-  
-  ListSubjectsVariablesBuilder listSubjects () {
-    return ListSubjectsVariablesBuilder(dataConnect, );
-  }
   
   
   UpsertStudentVariablesBuilder upsertStudent ({required String email, required String name, }) {
@@ -148,6 +98,56 @@ class DbConnector {
   
   DeleteAttendanceVariablesBuilder deleteAttendance ({required String id, }) {
     return DeleteAttendanceVariablesBuilder(dataConnect, id: id,);
+  }
+  
+  
+  GetStudentDataVariablesBuilder getStudentData () {
+    return GetStudentDataVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListStudentsVariablesBuilder listStudents () {
+    return ListStudentsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetInstructorVariablesBuilder getInstructor () {
+    return GetInstructorVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListInstructorsVariablesBuilder listInstructors () {
+    return ListInstructorsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetGroupVariablesBuilder getGroup () {
+    return GetGroupVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListGroupsVariablesBuilder listGroups () {
+    return ListGroupsVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetAttendanceVariablesBuilder getAttendance () {
+    return GetAttendanceVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListAttendancesVariablesBuilder listAttendances () {
+    return ListAttendancesVariablesBuilder(dataConnect, );
+  }
+  
+  
+  GetSubjectVariablesBuilder getSubject () {
+    return GetSubjectVariablesBuilder(dataConnect, );
+  }
+  
+  
+  ListSubjectsVariablesBuilder listSubjects () {
+    return ListSubjectsVariablesBuilder(dataConnect, );
   }
   
 

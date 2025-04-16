@@ -17,7 +17,8 @@ class LoginWithEmailUsecase extends BaseUseCase<LoginModel, LoginInputs> {
     try {
       final result = await _authRepository.loginWithEmail(
           email: params.emailOrPhone,
-          password: params.password
+          password: params.password,
+          userType: params.userType,
       );
       return Right(result);
     } on DioException catch (e) {

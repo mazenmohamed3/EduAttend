@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_data_connect/firebase_data_connect.dart';
 import 'package:mobile_app_project/core/generated/dataconnect/connector/db.dart';
+import '../../../../../core/enums/login_user_type.dart';
 import '../../../../../core/errors/exception.dart';
 import '../../../domain/model/login_models/login_model.dart';
 import '../../services/login_service.dart';
@@ -9,6 +9,8 @@ abstract class LoginDatasource {
   Future<LoginModel> loginWithEmail({
     required String email,
     required String password,
+    required LoginUserType userType,
+
   });
 
   Future<LoginModel> loginWithGoogle();
@@ -21,26 +23,41 @@ abstract class LoginDatasource {
 class LoginDataSourceImpl implements LoginDatasource {
   final FirebaseAuth _firebaseAuth;
   final LoginService _loginService;
+  final DbConnector _dbConnector;
 
-  LoginDataSourceImpl(this._firebaseAuth)
+  LoginDataSourceImpl(this._firebaseAuth, this._dbConnector)
     : _loginService = LoginService(_firebaseAuth);
 
   @override
   Future<LoginModel> loginWithEmail({
     required String email,
     required String password,
+    required LoginUserType userType,
   }) async {
     try {
+      late List<dynamic> userList;
+
+      if (userType == LoginUserType.student) {
+        final result = await _dbConnector.listStudents().email(email).execute();
+        userList = result.data.students;
+      } else {
+        final result = await _dbConnector.listInstructors().email(email).execute();
+        userList = result.data.instructors;
+      }
+
+      // Validate user presence
+      if (userList.isEmpty || !userList.any((user) => user.email == email)) {
+        throw NotFoundException("User not found");
+      }
+
+      // Firebase Authentication
       UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      print(userCredential);
-      OperationResult<UpsertStudentData, UpsertStudentVariables> result = await DbConnector.instance.upsertStudent(email: email, name: "name").execute();
-      print("============================> ${result.data.student_upsert.id}");
-      print(userCredential.toString());
+
       return _loginService.userToLoginModel(userCredential.user);
     } on FirebaseAuthException catch (e) {
       throw _loginService.handleFirebaseAuthException(e);
-    } on Exception {
-      throw FetchDataException();
+    } on Exception catch (e){
+      throw FetchDataException(e.toString());
     }
   }
 

@@ -1,31 +1,18 @@
+import 'package:mobile_app_project/core/enums/login_user_type.dart';
+
 class LoginInputs {
-  final String emailOrPhone; // Can be either username or phone number
+  final String emailOrPhone;
   final String password;
+  final LoginUserType userType;
 
   LoginInputs({
     required this.emailOrPhone,
     required this.password,
+    required this.userType,
   });
 
-  // From JSON
-  factory LoginInputs.fromJson(Map<String, dynamic> json) {
-    return LoginInputs(
-      emailOrPhone: json['emailOrPhone'],
-      password: json['password'],
-    );
-  }
-
-  // To JSON
-  Map<String, dynamic> toJson() {
-    return {
-      'emailOrPhone': emailOrPhone,
-      'password': password,
-    };
-  }
-
-  // Optional: To String for easy logging/debugging
   @override
   String toString() {
-    return 'LoginInputModel{emailOrPhone: $emailOrPhone, password: $password}';
+    return 'LoginInputs{emailOrPhone: $emailOrPhone, password: $password, userType: $userType}';
   }
 }
