@@ -8,8 +8,8 @@ query GetStudentData @auth(level: USER) {
 }
 
 # List Student objects with filtering and pagination
-query ListStudents($id: String, $offset: Int, $limit: Int) @auth(level: USER){
-  students(offset: $offset, limit: $limit, where: {id: {eq: $id}}) {
+query ListStudents($email: String, $offset: Int, $limit: Int) @auth(level: USER){
+  students(offset: $offset, limit: $limit, where: {email: {eq: $email}}) {
     id
     email
     name
@@ -26,8 +26,8 @@ query GetInstructor @auth(level: USER) {
 }
 
 # List Instructor objects with filtering and pagination
-query ListInstructors($id: String, $offset: Int, $limit: Int) @auth(level: USER){
-  instructors(offset: $offset, limit: $limit, where: {id: {eq: $id}}) {
+query ListInstructors($email: String, $offset: Int, $limit: Int) @auth(level: USER){
+  instructors(offset: $offset, limit: $limit, where: {email: {eq: $email}}) {
     id
     email
     name

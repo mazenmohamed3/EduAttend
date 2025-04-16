@@ -1,4 +1,5 @@
 import 'package:mobile_app_project/features/auth/data/services/login_service.dart';
+import '../../../../core/enums/login_user_type.dart';
 import '../../domain/model/login_models/login_model.dart';
 import '../datasources/remote/login_remote_datasources.dart';
 import '../../domain/repository/login_repo.dart';
@@ -10,9 +11,17 @@ class LoginRepositoryImpl implements LoginRepository {
 
   // Login with email and password
   @override
-  Future<LoginModel> loginWithEmail({required String email, required String password}) async {
+  Future<LoginModel> loginWithEmail({
+    required String email,
+    required String password,
+    required LoginUserType userType,
+  }) async {
     try {
-      final loginModel = await datasource.loginWithEmail(email: email, password: password);
+      final loginModel = await datasource.loginWithEmail(
+        email: email,
+        password: password,
+        userType: userType,
+      );
 
       // Save user data to secure storage
       await LoginService.saveUserDataToSecureStorage(loginModel);
@@ -57,7 +66,9 @@ class LoginRepositoryImpl implements LoginRepository {
   @override
   Future<LoginModel> loginWithPhoneNumber({required String phoneNumber}) async {
     try {
-      final loginModel = await datasource.loginWithPhoneNumber(phoneNumber: phoneNumber);
+      final loginModel = await datasource.loginWithPhoneNumber(
+        phoneNumber: phoneNumber,
+      );
 
       // Save user data to secure storage
       await LoginService.saveUserDataToSecureStorage(loginModel);

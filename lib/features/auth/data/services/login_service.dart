@@ -66,6 +66,7 @@ class LoginService {
   ServerException handleFirebaseAuthException(FirebaseAuthException e) {
     switch (e.code) {
       case 'invalid-email':
+      case 'invalid-credential':
       case 'wrong-password':
       case 'user-not-found':
         return UnauthorizedException("Invalid email or password.");

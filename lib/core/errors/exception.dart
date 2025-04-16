@@ -16,33 +16,33 @@ class ServerException extends Equatable implements Exception {
 }
 
 class FetchDataException extends ServerException {
-  const FetchDataException([message]) : super("Error During Communication");
+  const FetchDataException([message]) : super(message ?? "Error During Communication");
 }
 
 class BadRequestException extends ServerException {
-  const BadRequestException([message]) : super("Bad Request");
+  const BadRequestException([message]) : super(message ?? "Bad Request");
 }
 
 class UnauthorizedException extends ServerException {
-  const UnauthorizedException([message]) : super("Unauthorized");
+  const UnauthorizedException([message]) : super(message ?? "Unauthorized");
 }
 
 class NotFoundException extends ServerException {
-  const NotFoundException([super.message]);
+  const NotFoundException([message]) : super(message ?? "Not Found");
 }
 
 class ConflictException extends ServerException {
-  const ConflictException([message]) : super("Conflict Occurred");
+  const ConflictException([message]) : super(message ?? "Conflict Occurred");
 }
 
 class InternalServerErrorException extends ServerException {
-  InternalServerErrorException([message]) : super("errorMessage".tr());
+  InternalServerErrorException([message]) : super(message ?? "errorMessage".tr());
 }
 
 //TODO: implement localization
 class NoInternetConnectionException extends ServerException {
   NoInternetConnectionException([message])
-    : super('No Internet Connection'.tr());
+    : super(message ?? 'No Internet Connection'.tr());
 }
 
 class CacheException implements Exception {
