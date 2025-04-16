@@ -8,5 +8,9 @@
   "instructor": "دكتور",
   "signIn": "تسجيل الدخول",
   "forgotPassword": "نسيت كلمة السر؟ ",
-  "resetPassword": "أعد ضبطه هنا"
+  "resetPassword": "أعد ضبطه هنا",
+  "homeLabel": "الرئيسيه",
+  "attendanceLabel": "الحضور",
+  "homeAppbarTitle": "جدول اليوم",
+  "attendanceAppBarTitle": "الحضور"
 }

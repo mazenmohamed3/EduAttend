@@ -8,5 +8,9 @@
   "instructor": "Instructor",
   "signIn": "Sign In",
   "forgotPassword": "Forgot your password? ",
-  "resetPassword": "Reset it here"
+  "resetPassword": "Reset it here",
+  "homeLabel": "Home",
+  "attendanceLabel": "Attendance",
+  "homeAppbarTitle": "My Schedule",
+  "attendanceAppBarTitle": "Attendance"
 }

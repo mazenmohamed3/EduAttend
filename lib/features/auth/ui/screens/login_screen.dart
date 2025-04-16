@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../../../asihfbiwufh.dart';
+import '../../../layout/ui/screens/layout_screen.dart';
 import '../../../../core/components/custom_button.dart';
 import '../../../../core/components/custom_text.dart';
 import '../../../../core/cubits/bool_cubit/bool_cubit.dart';
@@ -223,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     } else if (state is LoginSuccess) {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => PlaceHolder()),
+                        MaterialPageRoute(builder: (context) => LayoutScreen()),
                       );
                     }
                   },
