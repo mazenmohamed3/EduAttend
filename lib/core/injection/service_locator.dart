@@ -13,20 +13,14 @@ import '../../features/auth/ui/cubits/login_cubit/login_cubit.dart';
 final GetIt sl = GetIt.instance;
 
 class ServiceLocator {
-  static BoolCubit createBoolCubitInstance({
-    required bool startWith,
-    required String instanceName,
-  }) {
+  static BoolCubit createBoolCubitInstance({required bool startWith, required String instanceName,}) {
     if (!sl.isRegistered<BoolCubit>(instanceName: instanceName)) {
       createBoolSingleton(startWith: startWith, instanceName: instanceName);
     }
     return sl<BoolCubit>(instanceName: instanceName);
   }
 
-  static void createBoolSingleton({
-    required bool startWith,
-    required String instanceName,
-  }) async {
+  static void createBoolSingleton({required bool startWith, required String instanceName,}) {
     sl.registerLazySingleton<BoolCubit>(
       () => BoolCubit(startWith: startWith),
       instanceName: instanceName,

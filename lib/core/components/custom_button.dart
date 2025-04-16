@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'custom_text.dart';
 
 class CustomButton extends StatelessWidget {
@@ -27,35 +26,35 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => noAction == true && isLoading == false ? onPressed() : {},
-      child: Container(
-        decoration: BoxDecoration(
-          color: color ?? (noAction == true ? Colors.blue : Colors.grey),
-          borderRadius: BorderRadius.circular(7.5.r),
+    return Container(
+      width: width ?? double.infinity,
+      height: height ?? 50.h,
+      margin: EdgeInsets.symmetric(
+        vertical: verticalMargin ?? 0,
+        horizontal: horizontalMargin ?? 0,
+      ),
+      child: ElevatedButton(
+        onPressed: (noAction && !isLoading) ? () => onPressed() : null,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: color ?? (noAction ? Colors.blue : Colors.grey),
+          disabledBackgroundColor: Colors.grey,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(7.5.r),
+          ),
+          padding: EdgeInsets.zero,
         ),
-        width: width ?? double.infinity,
-        margin: EdgeInsets.symmetric(
-          horizontal: horizontalMargin ?? 0,
-          vertical: verticalMargin ?? 0,
-        ),
-        height: height ?? 50.h,
-        child: Center(
-          child:
-              isLoading == true
-                  ? Transform.scale(
-                    scale: -0.8,
-                    child: const CircularProgressIndicator(color: Colors.black),
-                  )
-                  : CustomText(
-                    text: title ?? 'Continue'.tr(),
-                    fontSize: 16.sp,
-                    color:
-                        noAction
-                            ? Colors.white
-                            : Colors.black,
-                    fontWeight: FontWeight.w700,
-                  ),
+        child: isLoading
+            ? Transform.scale(
+          scale: 0.8,
+          child: const CircularProgressIndicator(
+            color: Colors.black,
+          ),
+        )
+            : CustomText(
+          text: title ?? 'Continue'.tr(),
+          fontSize: 16.sp,
+          color: noAction ? Colors.white : Colors.black,
+          fontWeight: FontWeight.w700,
         ),
       ),
     );

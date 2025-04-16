@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../asihfbiwufh.dart';
 import '../../../../core/components/custom_button.dart';
 import '../../../../core/components/custom_text.dart';
@@ -115,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomText(text: 'email'),
                         SizedBox(height: 8.h),
                         TextFormField(
-                          cursorColor: Colors.blue,
                           controller: _emailController,
                           focusNode: _emailFocusNode,
                           keyboardType: TextInputType.emailAddress,
@@ -142,7 +142,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         CustomText(text: 'password'),
                         SizedBox(height: 8.h),
                         TextFormField(
-                          cursorColor: Colors.blue,
                           controller: _passwordController,
                           focusNode: _passwordFocusNode,
                           keyboardType: TextInputType.visiblePassword,
@@ -240,7 +239,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               context.read<LoginCubit>().loginWithEmail(
                                 emailOrPhone: _emailController.text,
                                 password: _passwordController.text,
-                                userType: radioCubit.state
+                                userType:
+                                    radioCubit.state
                                         ? LoginUserType.student
                                         : LoginUserType.instructor,
                               );
@@ -258,24 +258,28 @@ class _LoginScreenState extends State<LoginScreen> {
                 RichText(
                   text: TextSpan(
                     text: 'forgotPassword'.tr(),
-                    style: TextStyle(fontSize: 14.sp, color: Colors.black),
+                    style: GoogleFonts.figtree(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w600,
+                      color: Theme.of(context).textTheme.bodyLarge?.color,
+                    ),
                     children: [
                       TextSpan(
                         text: 'resetPassword'.tr(),
-                        style: TextStyle(
+                        style: GoogleFonts.figtree(
                           fontSize: 14.sp,
-                          color: Colors.blue,
                           fontWeight: FontWeight.w500,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
-                        recognizer:
-                            TapGestureRecognizer()
-                              ..onTap = () {
-                                // TODO: Navigate to password reset screen
-                              },
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            // TODO: Navigate to password reset screen
+                          },
                       ),
                     ],
                   ),
                 ),
+
               ],
             ),
           ),

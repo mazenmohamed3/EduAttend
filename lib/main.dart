@@ -23,9 +23,9 @@ void main() async {
             : null,
   );
   //TODO: make sure to change ip when presenting to the Prof.
-  DbConnector.instance.dataConnect.useDataConnectEmulator(
-    "7.tcp.eu.ngrok.io",
-    12306,
+  sl<DbConnector>().dataConnect.useDataConnectEmulator(
+    "2.tcp.eu.ngrok.io",
+    13004,
   );
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableLevels = [];
@@ -71,6 +71,8 @@ class MyApp extends StatelessWidget {
               locale: context.locale,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: ThemeMode.system,
               home: LoginScreen(),
             ),
           ),

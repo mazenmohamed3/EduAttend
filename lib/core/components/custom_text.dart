@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
-  final Color color;
+  final Color? color; // Make this nullable
   final FontWeight fontWeight;
   final double fontSize;
   final double height;
@@ -17,7 +17,7 @@ class CustomText extends StatelessWidget {
   const CustomText({
     super.key,
     required this.text,
-    this.color = Colors.black,
+    this.color,
     this.fontWeight = FontWeight.w600,
     this.fontSize = 16,
     this.height = 1.2,
@@ -30,21 +30,21 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final lang = context.locale.toString();
-    final lang = 'en';
-
-    // Provide a default empty list for args if null
+    final lang = context.locale.languageCode;
     final argsToPass = args ?? [];
 
+    final defaultColor = Theme.of(context).textTheme.bodyLarge?.color;
+
     return Text(
-      text.tr(args: argsToPass).toString(), // Ensure args is not null
+      text.tr(args: argsToPass),
       textAlign: textAlign,
+      overflow: overflow,
       style: lang == 'en'
           ? googleFonts(
         decoration: textDecoration,
         decorationThickness: 1.8,
         fontSize: fontSize,
-        color: color,
+        color: color ?? defaultColor,
         fontWeight: fontWeight,
         height: height,
       )
@@ -52,7 +52,7 @@ class CustomText extends StatelessWidget {
         decoration: textDecoration,
         decorationThickness: 1.8,
         fontSize: fontSize,
-        color: color,
+        color: color ?? defaultColor,
         fontWeight: fontWeight,
         height: height,
       ),
