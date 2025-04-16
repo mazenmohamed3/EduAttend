@@ -16,12 +16,19 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await ServiceLocator.init();
   SecureStorageHelper.init();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp(
+    options:
+        Firebase.apps.any((app) => app.name.isNotEmpty)
+            ? DefaultFirebaseOptions.currentPlatform
+            : null,
+  );
   //TODO: make sure to change ip when presenting to the Prof.
-  DbConnector.instance.dataConnect.useDataConnectEmulator("7.tcp.eu.ngrok.io", 12306);
+  DbConnector.instance.dataConnect.useDataConnectEmulator(
+    "7.tcp.eu.ngrok.io",
+    12306,
+  );
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.enableLevels = [];
-
 
   runApp(
     EasyLocalization(
@@ -44,29 +51,29 @@ class MyApp extends StatelessWidget {
         MediaQuery.of(context).orientation == Orientation.landscape;
     return ScreenUtilInit(
       designSize:
-      MediaQuery.of(context).size.width < 600
-          ? const Size(393, 853)
-          : isLandscape
-          ? const Size(1194, 834)
-          : const Size(834, 1194),
+          MediaQuery.of(context).size.width < 600
+              ? const Size(393, 853)
+              : isLandscape
+              ? const Size(1194, 834)
+              : const Size(834, 1194),
       minTextAdapt: true,
       splitScreenMode: true,
       builder:
           (context, child) => MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context) => sl<LoginCubit>()),
-          BlocProvider(create: (context) => BoolCubit(startWith: false)),
-        ],
-        child: MaterialApp(
-          title: 'Mobile App Project',
-          supportedLocales: EasyLocalization.of(context)!.supportedLocales,
-          localizationsDelegates: context.localizationDelegates,
-          locale: context.locale,
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightTheme,
-          home: LoginScreen(),
-        ),
-      ),
+            providers: [
+              BlocProvider(create: (context) => sl<LoginCubit>()),
+              BlocProvider(create: (context) => BoolCubit(startWith: false)),
+            ],
+            child: MaterialApp(
+              title: 'Mobile App Project',
+              supportedLocales: EasyLocalization.of(context)!.supportedLocales,
+              localizationsDelegates: context.localizationDelegates,
+              locale: context.locale,
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.lightTheme,
+              home: LoginScreen(),
+            ),
+          ),
     );
   }
 }

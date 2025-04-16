@@ -35,7 +35,7 @@ query ListInstructors($id: String, $offset: Int, $limit: Int) @auth(level: USER)
 }
 
 # Get a single Group's details
-query GetGroup($id: UUID) {
+query GetGroup($id: UUID) @auth(level: USER) {
   group(id: $id) {
     id
     subject {
@@ -63,7 +63,7 @@ query ListGroups($id: UUID, $offset: Int, $limit: Int) @auth(level: USER){
 }
 
 # Get a single Attendance record's details
-query GetAttendance($id: UUID) {
+query GetAttendance($id: UUID) @auth(level: USER) {
   attendance(id: $id) {
     id
     group {
@@ -101,7 +101,7 @@ query ListAttendances($id: UUID, $offset: Int, $limit: Int) @auth(level: USER){
 }
 
 # Get a single Subject's details
-query GetSubject($id: UUID) {
+query GetSubject($id: UUID) @auth(level: USER) {
   subject(id: $id) {
     id
     name
